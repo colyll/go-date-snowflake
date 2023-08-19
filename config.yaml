@@ -1,0 +1,18 @@
+snowflake:
+  #序号ID位宽(11bits)
+  idBits: 11
+
+  #机器ID
+  machineId: 0
+
+  #机器ID位宽(9bits)
+  machineIdBits: 9
+
+  #区域ID(6bits)
+  regionId: 0
+
+  #区域ID位宽(0bit) 6bit以内 生成id字符串总长度24位
+  regionIdBits: 0
+
+  #缓存头
+  cachePrefix: "colyll:snowflake:"
