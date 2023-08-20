@@ -27,24 +27,24 @@ package main
 
 import (
 	"fmt"
-	snowflake "github.com/colyll/go-date-snowflake"
+	"github.com/colyll/go-date-snowflake"
 	"github.com/redis/go-redis/v9"
 	"time"
 )
 
 func main() {
-	var t1 = time.Now().UnixMicro()
-	var client = redis.NewClient(&redis.Options{Addr: "localhost:6379", DB: 0})
-	var s = snowflake.New(client)
+	t1 := time.Now()
+	client := redis.NewClient(&redis.Options{Addr: "localhost:6379", DB: 0})
+	s := snowflake.New(client)
 
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 100000; i++ {
 		_, err := s.Id()
 		if err != nil {
 			fmt.Println("error!")
 		}
 	}
-	var t2 = time.Now().UnixMicro()
+	t2 := time.Since(t1)
 
-	fmt.Println(t2 - t1)
+	fmt.Println(t2.Microseconds())
 }
 ```
